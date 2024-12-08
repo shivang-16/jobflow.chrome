@@ -1,0 +1,98 @@
+.draggableButton {
+  position: fixed;
+  top: 50%;
+  right: 100;
+  transform: translateY(-50%);
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.background{
+   background-color: white;
+   height: 100vh;
+   z-index: 999;
+}
+
+.sidePanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 20rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.closed {
+  transform: translateX(100%);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.closeButton {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #4b5563;
+  &:hover {
+    color: #1f2937;
+  }
+}
+
+.content {
+  padding: 1rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}
+
+.location {
+  margin-top: 1rem;
+}
+
+.footer {
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.saveButton {
+  width: 100%;
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} 

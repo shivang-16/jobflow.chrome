@@ -5,7 +5,6 @@ chrome.runtime.sendMessage("From the content script", (response) => {
 import React from "react";
 import ReactDom from "react-dom/client";
 import SidePanel from "./SidePanel";
-import "../static/tailwind.css";
 
 const App: React.FC = () => {
   return <SidePanel/>;

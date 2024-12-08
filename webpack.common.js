@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const tailwindcss = require("tailwindcss");
 const autoprefixer = require("autoprefixer");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
@@ -35,8 +36,9 @@ module.exports = {
               },
             },
           },
+          "sass-loader"
         ],
-        test: /\.css$/i,
+        test: /\.(css|scss)$/i,
       },
       {
         type: "asset/resource",
@@ -58,6 +60,10 @@ module.exports = {
     }),
 
     ...getHTMLPlugins(["popup", "options"]),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
   ],
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
