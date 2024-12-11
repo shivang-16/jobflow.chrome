@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDom from "react-dom/client";
 
-const test = <img src="icon.png" />;
+const test = <img src="icon.webp" />;
 // create root and append to body
 const root = document.createElement("div");
 document.body.appendChild(root);
