@@ -22,5 +22,9 @@
       "matches": ["https://www.linkedin.com/*", "https://www.workatastartup.com/*"],
       "js": ["contentScript.js"]
     }
+  ],
+  "permissions": [ "cookies", "alarms" , "http://*/*", "https://*/*", "storage"],
+  "host_permissions": [
+    "http://*/*", "https://*/*"
   ]
 }

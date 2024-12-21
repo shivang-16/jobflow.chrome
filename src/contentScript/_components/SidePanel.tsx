@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/SidePanel.module.scss";
 import urlList from './urlList'; // Import the URL list
-import { scrapeJobPage } from "../../actions";
+import { saveJob, scrapeJobPage } from "../../actions";
 import DraggableButton from "./DraggableButton";
 import JobForm from "./JobForm"; // Import the new JobForm component
+import { getTokenFromBackground } from "../../apiClient/apiClient";
 
 const SidePanel: React.FC = () => {
   console.log("inside sidepanel");
@@ -19,16 +20,23 @@ const SidePanel: React.FC = () => {
       if (isUrlMatched) {
         const data = await scrapeJobPage(currentUrl, 'ycombinator');
         if (typeof data !== 'string') {
-          console.log(data.data)
+          console.log(data.data);
           setScrapedJob(data.data);
           setIsOpen(true);
         } else {
           console.error("Received string instead of AxiosResponse:", data);
         }
       }
+
+      console.log(await getTokenFromBackground(), "here is token")
+
     })(); 
   }, []); 
-
+    
+  const handleTrackJob = async() => {
+    const data = {}
+    const reponse = await saveJob(data)
+  }
   return (
     <>
       <DraggableButton setIsOpen={setIsOpen}/>

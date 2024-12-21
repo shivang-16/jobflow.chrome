@@ -10,3 +10,12 @@ export const scrapeJobPage = async(job_link: string, portal: string) => {
     return (error as Error).message
   }
 }
+
+export const saveJob = async(data: any) => {
+  try {
+    const response = await apiClient.post('/api/user/job/create', {data})
+    return response.data
+  } catch (error) {
+    return (error as Error).message
+  }
+}
