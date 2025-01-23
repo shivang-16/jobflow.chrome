@@ -12,10 +12,20 @@ export const scrapeJobPage = async(job_link: string, portal: string) => {
 }
 
 export const saveJob = async(data: any) => {
+  console.log(data, "here is data")
   try {
-    const response = await apiClient.post('/api/user/job/create', {data})
+    const response = await apiClient.post('/api/user/job/create', data)
     return response.data
   } catch (error) {
+    return (error as Error).message
+  }
+}
+
+export const getJobData = async(page=1, portal='', title='') => {
+  try {
+    const response = await apiClient.get(`/api/job/get?page=${page}&portal=${portal}&title=${title}`)
+    return response.data
+  } catch (error: unknown) {
     return (error as Error).message
   }
 }

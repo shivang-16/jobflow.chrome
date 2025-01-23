@@ -1,4 +1,5 @@
 import axios from 'axios';
+import getTokenFromBackground from '../actions/getCookie';
 
 // Axios client setup
 const apiClient = axios.create({
@@ -9,26 +10,13 @@ const apiClient = axios.create({
   },
 });
 
-// Function to request token from background script
-export function getTokenFromBackground() {
-  return new Promise((resolve, reject) => {
-    chrome.runtime.sendMessage({ action: 'getToken' }, (response) => {
-      console.log(response, "here is reonse")
-      if (response && response.token) {
-        resolve(response.token);
-      } else {
-        reject(response.error || 'Token not found.');
-      }
-    });
-  });
-}
+
 
 // Add token to Axios requests
 apiClient.interceptors.request.use(
   async (config) => {
     try {
       const token = await getTokenFromBackground();
-      console.log('otken', token)
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }

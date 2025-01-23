@@ -2,12 +2,15 @@ chrome.runtime.sendMessage("From the content script", (response) => {
   console.log(response);
 });
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom/client";
 import SidePanel from "./_components/SidePanel";
 
 const App: React.FC = () => {
-  return <SidePanel/>;
+  
+  return (
+     <SidePanel />
+  );
 };
 
 // create root and append to body

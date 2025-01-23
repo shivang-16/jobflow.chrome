@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom/client";
 import "../static/tailwind.css";
 import PopupBox from "./_components/popup_ui";
+import getTokenFromBackground from "../actions/getCookie";
+import LoginButton from "../components/shared/LoginButton/LoginButton";
 
 const App: React.FC = () => {
 
+  const [token, setToken] = useState('')
+  useEffect(() => {
+    (async() => {
+      const jwt_token = await getTokenFromBackground() as string
+      setToken(jwt_token)
+    })()
+  })
   return (
-    <PopupBox/>
+    token ? <PopupBox /> : <LoginButton/>
   );
 };
 
