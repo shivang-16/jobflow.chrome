@@ -10,7 +10,7 @@ import JobCard from "./JobCard";
 
 const SidePanel: React.FC = () => {
   console.log("inside sidepanel");
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [scrapedJob, setScrapedJob] = useState<any>()
   const [jobs, setJobs] = useState<any>()
   const [isFormOpen, setIsFormOpen] = useState(false); // State to control form visibility
@@ -20,10 +20,10 @@ const SidePanel: React.FC = () => {
     (async () => {
       const currentUrl = window.location.href;
       // Check if the current URL matches any of the specified prefixes
-      const isUrlMatched = urlList.some(url => currentUrl.startsWith(url));
-      if (isUrlMatched) {
+      const matchedUrl = urlList.find(url => currentUrl.startsWith(url.url));
+      if (matchedUrl) {
         setIsOpen(true);
-        const data = await scrapeJobPage(currentUrl, 'ycombinator');
+        const data = await scrapeJobPage(currentUrl, matchedUrl.platform);
         if (typeof data !== 'string') {
           console.log(data.data);
           setScrapedJob(data.data);
@@ -31,12 +31,11 @@ const SidePanel: React.FC = () => {
           console.error("Received string instead of AxiosResponse:", data);
         }
 
-        const jobs = await getJobData(1, 'ycombinator', '')
+        const jobs = await getJobData(1, matchedUrl.platform, '')
         console.log(jobs, "here is jobs")
         setJobs(jobs.jobs)
-
       }
-     
+      
       const jwt_token = await getTokenFromBackground() as string
       setToken(jwt_token)
 
@@ -59,7 +58,7 @@ const SidePanel: React.FC = () => {
   }
   return (
     <>
-      <DraggableButton setIsOpen={setIsOpen}/>
+      {/* <DraggableButton setIsOpen={setIsOpen}/> */}
 
    
         <div className={`${styles.jobflow_sidePanel} ${isOpen ? styles.jobflow_open : styles.jobflow_closed}`}>

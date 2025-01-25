@@ -1,7 +1,7 @@
 const urlList = [
-  "https://www.linkedin.com/jobs/",
-  "https://www.glassdoor.co.in/Job",
-  "https://www.workatastartup.com/jobs",
+  {platform: "linkedin", url: "https://www.linkedin.com/jobs/"},
+  {platform: "glassdoor", url:"https://www.glassdoor.co.in/Jo"},
+  {platform: "ycombinator", url: "https://www.workatastartup.com/jobs"}
   // Add more URLs here as needed
 ];
 
