@@ -5,6 +5,7 @@ chrome.runtime.sendMessage("From the content script", (response) => {
 import React from "react";
 import ReactDom from "react-dom/client";
 import SidePanel from "./_components/SidePanel";
+import "../static/tailwind.css"
 
 // Create iframe
 const iframe = document.createElement('iframe');
@@ -16,7 +17,7 @@ iframe.style.cssText = `
   border-radius: 10px;
   right: 0;
   height: 75%;
-  width: 20rem;
+  width: 320px;
   border: none;
   z-index: 2147483647;
   background: white;
@@ -28,10 +29,7 @@ document.body.appendChild(iframe);
 
 // Wait for iframe to load before injecting content
 iframe.onload = () => {
-  // Get iframe's document
   const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
-  // Create container for React app
   const root = iframeDocument.createElement("div");
   root.id = "jobflow-root";
   iframeDocument.body.appendChild(root);
@@ -42,7 +40,7 @@ iframe.onload = () => {
     body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
+      overflow: auto;
       width: 100%;
       height: 100%;
     }
